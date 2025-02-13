@@ -1,5 +1,8 @@
 --[[
 
+
+
+
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -307,7 +310,45 @@ require("lazy").setup({
 			})
 		end,
 	},
+	-- NOTE: Ollama plugin
+	-- Custom configuration (defaults shown)
+	"huggingface/llm.nvim",
+	--[[
+	{
+		"meeehdi-dev/bropilot.nvim",
+		event = "VeryLazy", -- preload model on start
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"j-hui/fidget.nvim",
+		},
+	},
+  ]]
+	--
+	--[[
+	{
+		"jacob411/Ollama-Copilot",
+		opts = {
+			-- model_name = "phi",
+			model_name = "qwen2.5-coder:3b",
+			-- model_name = "deepseek-coder:6.7b",
+			stream_suggestion = true,
+			python_command = "python3",
+			filetypes = { "rust", "go", "python", "lua", "vim", "markdown" },
+			ollama_model_opts = {
+				num_predict = 100,
+				temperature = 0.1,
+			},
+			keymaps = {
+				suggestion = "<leader>os",
+				reject = "<leader>or",
+				insert_accept = "<Tab>",
+			},
+		},
+	},
+  ]]
+	--
 
+	--
 	-- NOTE: Plugins can specify dependencies.
 	--
 	-- The dependencies are proper plugin specifications as well - anything
@@ -420,7 +461,6 @@ require("lazy").setup({
 			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
-
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -650,7 +690,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		lazy = false,
